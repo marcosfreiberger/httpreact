@@ -14,6 +14,16 @@
       "id": 3,
       "name": "Boné aba reta",
       "price": 29.9
+    },
+    {
+      "name": "Blusa",
+      "price": "25.50",
+      "id": 4
+    },
+    {
+      "name": "Bermuda",
+      "price": "45",
+      "id": 5
     }
   ]
 }
