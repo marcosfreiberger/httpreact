@@ -11,7 +11,7 @@ const url = 'http://localhost:3000/products'
 function App() {
   const [products, setProducts] = useState([]);
 
-  const { data: items, httpConfig, loading } = useFetch(url);
+  const { data: items, httpConfig, loading, error } = useFetch(url);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -76,6 +76,7 @@ function App() {
           />
         </div>
       )}
+      {error && <p>{error}</p>}
       <ul>
         {items && items.map(product => (
           <li key={product.id}>
