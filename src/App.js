@@ -54,6 +54,15 @@ function App() {
     setPrice('');
   }
 
+  const renderButton = () => {
+    if (loading) {
+      console.log(loading);
+      return <input type="submit" disabled value='Aguarde' />;
+    } else {
+      return <input type="submit" value='Adicionar' />
+    }
+  }
+
   return (
     <div className="App">
       <h1>Lista de Produtos</h1>
@@ -84,7 +93,7 @@ function App() {
             Price:
             <input type="number" value={price} name={price} onChange={(e) => setPrice(e.target.value)} />
           </label>
-          <input type="submit" value='Adicionar' />
+          {renderButton()}
         </form>
       </div>
     </div>
