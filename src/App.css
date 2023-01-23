@@ -53,3 +53,10 @@ form input {
   flex-direction: column;
   margin-bottom: 15px;
 }
+
+.loadingGifSize {
+  max-width: 10rem;
+  min-width: 10rem;
+  max-height: 10rem;
+  min-height: 10rem;
+}

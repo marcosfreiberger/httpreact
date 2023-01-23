@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 
 import { useFetch } from './hooks/useFetch';
 
+import loadingGif from './assets/loading.gif';
+
 const url = 'http://localhost:3000/products'
 
 function App() {
   const [products, setProducts] = useState([]);
 
-  const { data: items, httpConfig } = useFetch(url);
+  const { data: items, httpConfig, loading } = useFetch(url);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -55,6 +57,16 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de Produtos</h1>
+      {loading && (
+        <div>
+          <img
+            id='loadingGif'
+            src={loadingGif}
+            alt='loadingGif'
+            className='loadingGifSize'
+          />
+        </div>
+      )}
       <ul>
         {items && items.map(product => (
           <li key={product.id}>
