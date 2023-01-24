@@ -60,3 +60,9 @@ form input {
   max-height: 10rem;
   min-height: 10rem;
 }
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

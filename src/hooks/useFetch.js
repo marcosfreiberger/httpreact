@@ -4,12 +4,14 @@ export const useFetch = (url) => {
     const [data, setData] = useState(null);
 
     const [config, setConfig] = useState(null);
-    const [method, seMethod] = useState(null);
+    const [method, setMethod] = useState(null);
     const [callFetch, setCallFetch] = useState(null);
 
     const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState(null);
+
+    const [itemId, setItemId] = useState(null);
 
     const httpConfig = (data, method) => {
         if (method === "POST") {
@@ -21,7 +23,17 @@ export const useFetch = (url) => {
                 body: JSON.stringify(data),
             });
 
-            seMethod(method);
+            setMethod(method);
+        } else if (method === "DELETE") {
+            setConfig({
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            setMethod("DELETE");
+            setItemId(data);
         }
     }
 
@@ -57,11 +69,19 @@ export const useFetch = (url) => {
                 const json = await response.json();
 
                 setCallFetch(json);
-            };
+            } else if (method === "DELETE") {
+                const deleteUrl = `${url}/${itemId}`;
+
+                const response = await fetch(deleteUrl, config);
+
+                const json = await response.json();
+
+                setCallFetch(json);
+            }
         };
 
         httpRequest();
-    }, [config, method, url]);
+    }, [config, method, url, itemId]);
 
 
     return { data, httpConfig, loading, error };

@@ -54,9 +54,12 @@ function App() {
     setPrice('');
   }
 
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
+  };
+
   const renderButton = () => {
     if (loading) {
-      console.log(loading);
       return <input type="submit" disabled value='Aguarde' />;
     } else {
       return <input type="submit" value='Adicionar' />
@@ -79,8 +82,9 @@ function App() {
       {error && <p>{error}</p>}
       <ul>
         {items && items.map(product => (
-          <li key={product.id}>
+          <li key={product.id} className='items'>
             {product.name} - R$ {product.price}
+            <button onClick={() => handleRemove(product.id)}>Excluir</button>
           </li>
         ))}
       </ul>
